@@ -1,0 +1,102 @@
+﻿@using TheRoadApp.Models.Tours
+
+@model ToursViewModel
+
+@{
+    ViewData["Title"] = "Booked Tours";
+}
+
+<div class="container my-5">
+
+    <a asp-controller="Home" asp-action="Index" class="custom-home-button">Home</a>
+    <h1 class="text-center my-4">Booked Tours</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Duration (Days)</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Tour Guides</th>
+                    <th scope="col">Sleep Conditions</th>
+                    <th scope="col">Terrain</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tour in Model.Tours)
+                {
+                    <tr>
+                        <td class="fw-bold">@tour.Name</td>
+                        <td>
+                            <div class="rounded mx-auto d-block" style="width: 350px;overflow: hidden;">
+                                <img src="@tour.ImgUrl" alt="@tour.Name" class="img-fluid" style="width: 100%; height: auto;" />
+                            </div>
+                        </td>
+                        <td>@tour.DurationInDays</td>
+                        <td>@tour.Capacity</td>
+                        <td>@tour.TourGuidesCount</td>
+                        <td>@tour.SleepConditions</td>
+                        <td>@tour.Terrain</td>
+                        <td class="text-success fw-bold">@tour.Price.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        font-size: 4rem;
+        text-align:center;
+        padding: 5rem;
+    }
+
+    table {
+        padding: 5rem;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    thead th {
+        font-size: 2rem;
+    }
+
+    tbody td {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    tbody tr:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    td {
+        vertical-align: middle;
+    }
+
+    .custom-home-button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px; 
+        font-size: 1.2rem; 
+        border: none; 
+        border-radius: 5px;
+        text-decoration: none; 
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        position: absolute;
+        margin: 3rem;
+    }
+
+    .custom-home-button:hover {
+        background-color: #0056b3; 
+        transform: scale(1.05); 
+    }
+
+</style>

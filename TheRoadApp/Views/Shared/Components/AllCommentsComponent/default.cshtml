@@ -1,0 +1,32 @@
+﻿@model TheRoadApp.Models.Comment.CommentsViewModel
+<section class="stories" id="Comments">
+    <div class="video-container">
+        <video class="bg-video" autoplay muted loop>
+            <source src="images/video.mp4" type="video/mp4" />
+        </video>
+    </div>
+	<div class="stories-wrapper">
+		@foreach (var comment in Model.Comments.Reverse().Take(2))
+		{
+			<div class="story-bg">
+				<div class="story">
+					<img src="images/comment-pic.jpg"
+					     alt="Customer image"
+					     class="story-image"/>
+					<div class="story-text">
+						<h1 class="story-heading">
+							@comment.Title
+						</h1>
+						<p class="story-paragraph">
+							@comment.Content
+						</p>
+						<br/>
+						<h1>
+							@comment.AuthorFullName, @comment.Email
+						</h1>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</section>

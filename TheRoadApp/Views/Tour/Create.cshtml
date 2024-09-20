@@ -1,0 +1,83 @@
+﻿@using TheRoadApp.Data.Models.Enums
+@model TheRoadApp.Models.Tours.AddTourInputModel
+<div>
+    <a asp-controller="Home" asp-action="Index" class="form-btn">Back</a>
+    <form enctype="multipart/form-data"
+          class="contact-form center"
+          method="post"
+          asp-controller="Tour"
+          asp-action="Create">
+        <h1 align="center">Add a Tour</h1>
+        <div class="input-groups">
+            <div class="input-group">
+                <label>Name</label>
+                <input asp-for="Name"
+                       type="text"
+                       id="name"
+                       class="contact-input"
+                       placeholder="Enter Tour name"/>
+            </div>
+            <div class="input-group">
+                <label>ImgURL</label>
+                <input asp-for="ImgUrl"
+                       type="text"
+                       id="imgUrl"
+                       class="contact-input"
+                       placeholder="Enter Image Url"/>
+            </div>
+        </div>
+        <div class="input-groups">
+            <div class="input-group">
+                <label>Duration(days)</label>
+                <input asp-for="DurationInDays"
+                       type="number"
+                       id="durationInDays"
+                       class="contact-input"
+                       placeholder="Enter Duration"/>
+            </div>
+            <div class="input-group">
+                <label>Capacity</label>
+                <input asp-for="Capacity"
+                       type="number"
+                       id="capacity"
+                       class="contact-input"
+                       placeholder="Enter Tour Capacity"/>
+            </div>
+        </div>
+        <div class="input-groups">
+            <div class="input-group">
+                <label>Tour guides</label>
+                <input asp-for="TourGuidesCount"
+                       type="number"
+                       id="tourGuidesCount"
+                       class="contact-input"
+                       placeholder="Enter tour guides count"/>
+            </div>
+            <div class="input-group">
+                <label>Sleep Conditions</label>
+                <input asp-for="SleepConditions"
+                       type="text"
+                       id="sleepConditions"
+                       class="contact-input"
+                       placeholder="Enter sleep conditions"/>
+            </div>
+        </div>
+        <div class="input-groups">
+            <div class="input-group">
+                <label>Price</label>
+                <input asp-for="Price"
+                       type="number"
+                       id="price"
+                       class="contact-input"
+                       placeholder="Enter tour price"/>
+            </div>
+            <div class="input-group">
+                <label>Terrain Difficulty</label>
+                <select asp-for="Terrain"
+                        asp-items="Html.GetEnumSelectList<Difficulty>()"
+                        class="contact-input difficulty-list"></select>
+            </div>
+        </div>
+        <button type="submit" class="form-btn">Submit</button>
+    </form>
+</div>

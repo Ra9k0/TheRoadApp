@@ -1,0 +1,46 @@
+﻿@using TheRoadApp.Services.Interfaces
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TheRoadApp.Models.Tours.ToursViewModel;
+@inject ITourService service
+
+<section class="popular-tours" id="Tours">
+    <h1 class="popular-tours-heading">The Most Popular Tours</h1>
+    <div class="cards-wrapper">
+        @foreach (var tour in this.Model.Tours)
+        {
+            <div class="card">
+                <div class="front-side">
+                    <img src="@tour.ImgUrl" alt="@tour.Name" class="card-image" />
+                    <h1 class="tour-name">@tour.Name</h1>
+                    <ul class="card-list">
+                        <li class="card-list-item">@tour.DurationInDays days tour</li>
+                        <li class="card-list-item">Up to @tour.Capacity people</li>
+                        <li class="card-list-item">@tour.TourGuidesCount tour guides</li>
+                        <li class="card-list-item">@tour.SleepConditions</li>
+                        <li class="card-list-item">Difficulty: @tour.Terrain</li>
+                    </ul>
+                    <button class="navigation-button">
+                        price &gt;&gt;
+                    </button>
+                </div>
+                <div class="back-side center">
+                    <button class="navigation-button">
+                        &lt;&lt; back
+                    </button>
+	                <h3 class="tour-price">$@tour.Price</h3>
+                    @if (await service.IsBookedAsync(tour.Id, User.FindFirstValue(ClaimTypes.NameIdentifier)))
+                    {
+                        <button class="card-button" style="background: gray">Booked</button>
+                    }
+                    else
+                    {
+                        <form method="post" asp-controller="Tour" asp-action="Book" asp-route-id="@tour.Id">
+		                    <button type="submit" class="card-button">Booking</button>
+	                    </form>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
